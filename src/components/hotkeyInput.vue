@@ -208,6 +208,7 @@ export default {
     addHotkey(data) {
       // 一些特殊情况的排除
       data.text = data.text.replace("Shift + +","+")
+      data.text = data.text.replace("Shift + =","+")
       this.curKey = data
       this.keychange(data.text)
     },
