@@ -108,6 +108,7 @@ export default {
         {win:"F12",mac:"F12",desc:"回到前一个工具窗口"},
         {win:"Tab",mac:"Tab",desc:"缩进"},
         {win:"ESC",mac:"ESC",desc:"从工具窗口进入代码文件窗口"},
+        {win:"Ctrl + Shift + O",mac:"Ctrl + Command + I",desc:"【插件】打开翻译对话框"},
       ],
       mapKey: {}
     };
