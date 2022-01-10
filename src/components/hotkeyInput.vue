@@ -39,6 +39,8 @@ const CODE_SPECIAL = [
     "Comma",
     "Equal",
     "Minus",
+    "Meta",
+    "Semicolon",
 ]
 const CODE_CONTROL = [
   "Shift",
@@ -156,13 +158,14 @@ export default {
       this.curKey = {}
     },
     handleKeydown(e) {
-      const { altKey, ctrlKey, shiftKey, key, code } = e;
+      const { altKey, ctrlKey, shiftKey, metaKey, key, code } = e;
       console.log(key, code)
       if (!CODE_CONTROL.includes(key)) {
         if (!this.keyRange.includes(code)) return;
         let controlKey = "";
         [
           { key: ctrlKey, text: "Ctrl" },
+          { key: metaKey, text: "Command" },
           { key: shiftKey, text: "Shift" },
           { key: altKey, text: "Alt" },
         ].forEach((curKey) => {
@@ -174,16 +177,25 @@ export default {
         if (key) {
           if (controlKey) controlKey += " + ";
           let finalKey = key.toUpperCase();
-          switch (key.toUpperCase()){
-            case "ArrowUp": finalKey="↑";break
-            case "ArrowDown": finalKey="↓";break
-            case "ArrowLeft": finalKey="←";break
-            case "ArrowRight": finalKey="→";break
+          switch (code.toUpperCase()){
+            case "ARROWUP": finalKey="↑";break
+            case "ARROWDOWN": finalKey="↓";break
+            case "ARROWLEFT": finalKey="←";break
+            case "ARROWRIGHT": finalKey="→";break
             case "ENTER": finalKey="Enter";break
             case "BACKSPACE": finalKey="Backspace";break
             case "BACKQUOTE": finalKey="`";break
             case "INSERT": finalKey="Insert";break
+            case "BACKSLASH": finalKey="\\";break
+            case "SEMICOLON": finalKey=";";break
           }
+
+          if(code.indexOf("Key") != -1) {
+            finalKey = code.replace("Key", "");
+          }else if(code.indexOf("Digit") != -1) {
+            finalKey = code.replace("Digit", "");
+          }
+
           controlKey += finalKey;
         }
         this.addHotkey({

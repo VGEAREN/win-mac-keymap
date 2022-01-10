@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 style="margin-top: 100px">当前系统 {{userOs}}</h1>
+    <h1 style="margin-top: 100px">当前系统 {{userOs}} <i @click="changeOs" style="font-size: 15px" class="el-icon-sort"></i></h1>
     <HotkeyInput
         style="margin-top: 30px"
         class="hotkey"
@@ -153,6 +153,13 @@ export default {
     }
   },
   methods: {
+    changeOs(){
+      if(this.userOs == 'Mac OS'){
+        this.userOs = "Windows"
+      }  else {
+        this.userOs = "Mac OS"
+      }
+    },
     handleHotkeyVerify(hotkey) {
       console.log(hotkey)
       for (const key of this.keys) {
