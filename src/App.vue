@@ -5,6 +5,7 @@
         style="margin-top: 30px"
         class="hotkey"
         :hotkey.sync="keys"
+        :os="userOs"
         :verify="handleHotkeyVerify"
         placeholder="请按需要转换的按键，支持组合按键"
         :keychange="keysChange"

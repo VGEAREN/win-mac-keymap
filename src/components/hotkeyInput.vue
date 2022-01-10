@@ -63,6 +63,10 @@ export default {
       type: Object,
       required: true,
     },
+    os: {
+      type: String,
+      required: true,
+    },
     // 校验函数 判断是否允许显示快捷键
     verify: {
       type: Function,
@@ -163,11 +167,17 @@ export default {
       if (!CODE_CONTROL.includes(key)) {
         if (!this.keyRange.includes(code)) return;
         let controlKey = "";
+        let ctrl = "Ctrl"
+        let alt = "Alt"
+        if(this.os == "Mac OS") {
+          ctrl = "Control"
+          alt = "Option"
+        }
         [
-          { key: ctrlKey, text: "Ctrl" },
+          { key: ctrlKey, text: ctrl },
           { key: metaKey, text: "Command" },
           { key: shiftKey, text: "Shift" },
-          { key: altKey, text: "Alt" },
+          { key: altKey, text: alt },
         ].forEach((curKey) => {
           if (curKey.key) {
             if (controlKey) controlKey += " + ";
